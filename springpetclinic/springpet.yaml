@@ -1,0 +1,32 @@
+---
+- name: deploying spring petclinic as linux service
+  hosts: appserver
+  become: yes
+  tasks:
+    - name: updating the packages and installing java 
+      apt:
+        name: openjdk-11-jdk
+        update_cache: yes
+        state: present
+    - name: creating a springpetclinic directory
+      file:
+        path: /usr/share/springpetclinic
+        state: directory
+    - name: downloading springpet clinic jar file 
+      get_url: 
+        url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
+        dest: /usr/share/springpetclinice/spring-petclinic-2.4.2.jar
+    - name: creating a springpet clinic user 
+      user:
+        name: springbootuser
+        passoword: springbootuser
+        state: present 
+    - name: changing the ownership of the file
+      file:
+        path: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
+        owner: springbootuser
+        mode: 500
+        state: file 
+    - name: 
+         
+        
