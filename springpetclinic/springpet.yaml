@@ -19,7 +19,7 @@
     - name: creating a springboot user 
       user:
         name: springbootuser
-        passoword: springbootuser
+        password: springbootuser
         state: present 
     - name: changing the ownership of the file
       file:
