@@ -12,11 +12,11 @@
       file:
         path: /usr/share/springpetclinic
         state: directory
-    - name: downloading springpet clinic jar file 
+    - name: downloading springpetclinic
       get_url: 
         url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
         dest: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
-    - name: creating a springpetboot user 
+    - name: creating a springboot user 
       user:
         name: springbootuser
         passoword: springbootuser
