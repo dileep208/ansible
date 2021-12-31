@@ -16,7 +16,7 @@
       get_url: 
         url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
         dest: /usr/share/springpetclinice/spring-petclinic-2.4.2.jar
-    - name: creating a springpet clinic user 
+    - name: creating a springpetboot user 
       user:
         name: springbootuser
         passoword: springbootuser
@@ -27,6 +27,14 @@
         owner: springbootuser
         mode: 500
         state: file 
-    - name: 
+    - name: copying the service file 
+      copy:
+        dest: /etc/systemd/system/springpetclinic.service
+        src: springpetclinic.service
+    - name: enabling and starting the springpetclinic serivice file 
+      systemd:
+        name: springpetclinic.service
+        enabled: yes
+        state: started
          
         
