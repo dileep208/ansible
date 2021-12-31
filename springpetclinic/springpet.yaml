@@ -1,6 +1,6 @@
 ---
 - name: deploying spring petclinic as linux service
-  hosts: all
+  hosts: localhost
   become: yes
   vars:
     java_package: openjdk-11-jdk
