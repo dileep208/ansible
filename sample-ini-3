@@ -4,4 +4,4 @@
 db[01:25:2].dileep.com
 
 [webserver]
-web[a:f.dileep.com]
+web[a:f].dileep.com
