@@ -5,6 +5,6 @@
 localhost
 
 [appserver]
-172.31.28.196
+172.31.28.196 test_var=frominventory
 [dbserver]
 172.31.20.209
