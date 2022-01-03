@@ -13,9 +13,12 @@
     - name: display the java package
       debug: 
         var: java_package
-    - name: checking the variables
+    - name: checking the variables var1
       debug:
-        var: test_var
+        var: test_var1
+    - name: checking the variables var2
+      debug:
+        var: test_var2
     - name: updating the packages and installing java 
       apt:
         name: "{{ java_package }}"
