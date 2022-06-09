@@ -1,0 +1,48 @@
+---
+- name: deploying spring petclinic as linux service
+  hosts: appserver
+  become: yes
+  tasks:
+    - name: fail when the os is other than ubuntu
+      fail:
+        msg: "This playbook works only on ubuntu instances and support for other os will be added soon"
+      when: ansible_distribution != "Ubuntu"
+    - name: updating the packages and installing java 
+      apt:
+        name: "{{ java_package }}"
+        update_cache: yes
+        state: present
+    - name: creating a springpetclinic directory
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+    - name: downloading springpetclinic
+      get_url: 
+        url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/{{app_file_name}}
+        dest: "{{ app_dir }}/{{ app_file_name }}"
+    - name: creating a springboot user 
+      user:
+        name: "{{ app_username }}"
+        password: "{{ app_username }}"
+        state: present 
+    - name: changing the ownership of the file
+      file:
+        path: "{{ app_dir }}/{{ app_file_name }}"
+        owner: "{{ app_username }}"
+        mode: 500
+        state: file 
+    - name: copying the service file 
+      copy:
+        dest: /etc/systemd/system/springpetclinic.service
+        src: springpetclinic.service
+    - name: enabling and starting the springpetclinic serivice file 
+      systemd:
+        name: springpetclinic.service
+        enabled: yes
+        state: started
+    - name: fail when the os is other than ubuntu
+      fail:
+        msg: "This playbook works only on ubuntu instances and support for other os will be added soon"
+      when: ansible_distribution != "ubuntu"
+         
+        
