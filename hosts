@@ -1,2 +1,2 @@
 [webserver]
-localhost var1=inventory
+localhost var1=inventory ansbile_python_interpreter=/usr/bin/python3
